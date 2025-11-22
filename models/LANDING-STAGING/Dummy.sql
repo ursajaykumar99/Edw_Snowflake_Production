@@ -1,1 +1,1 @@
-SELECT CURRENT_USER(),current_account()
+SELECT CURRENT_USER()
