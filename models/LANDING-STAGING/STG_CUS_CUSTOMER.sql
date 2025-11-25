@@ -1,2 +1,2 @@
 select *,
-from edw_development_db.edw_dev_landing_sc.lnd_cus_customer
+from {{source('landing_table', 'LND_CUS_CUSTOMER')}}
