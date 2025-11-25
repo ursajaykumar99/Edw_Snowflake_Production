@@ -1,2 +1,2 @@
-select *,
-from {{source('landing_table', 'LND_CUS_CUSTOMER')}}
+select *
+from {{ source('landing_table', 'LND_CUS_CUSTOMER')}}
