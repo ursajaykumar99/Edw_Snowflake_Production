@@ -37,22 +37,23 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   Edw_Snowflake_Production:
-    + database: EDW_DEVELOPMENT_DB
-    + transient: false
-    + on_schema_change: append_new_columns
-    + snowflake_warehouse: EDW_DEV_SMALL_WH
-    
-    # Applies to all files under models as per folder specification wise
+      +transient: false
+      +on_schema_change: append_new_columns
+      +snowflake_warehouse: 'EDW_DEV_SMALL_WH'
+      
+      # Applies to all files under models as per folder specification wise
+      "LANDING-STAGING":
+        +materialized: table
+        +schema: "{{ env_var('DBT_LND_SCHEMA') }}"
 
-    LANDING-STAGING:
-      +materialized: table
-      +schema: EDW_DEV_LANDING_SC
-    STAGING-BRONZE:
-      +materialized: table
-      +schema: EDW_DEV_BRONZE_SC
-    BRONZE-SILVER:
-      +materialized: table
-      +schema: EDW_DEV_SILVER_SC
-    SILVER-GOLD:
-      +materialized: table
-      +schema: EDW_DEV_GOLD_SC
+      "STAGING-BRONZE":
+        +materialized: table
+        +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
+
+      "BRONZE-SILVER":
+        +materialized: table
+        +schema: "{{ env_var('DBT_SILVER_SCHEMA') }}"
+
+      "SILVER-GOLD":
+        +materialized: table
+        +schema: "{{ env_var('DBT_GOLD_SCHEMA') }}"
