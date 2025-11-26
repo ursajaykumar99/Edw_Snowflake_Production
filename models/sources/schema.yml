@@ -3,8 +3,8 @@ version: 2
 
 sources:
   - name: landing_table
-    database: EDW_DEVELOPMENT_DB
-    schema: EDW_DEV_LANDING_SC
+    database: "{{ env_var('DBT_DATABASE') }}"
+    schema: "{{ env_var('DBT_LND_SCHEMA') }}"
     tables: 
         - name: LND_CUS_CUSTOMER
         - name: LND_ITM_LINEITEM

@@ -39,21 +39,21 @@ models:
   Edw_Snowflake_Production:
       +transient: false
       +on_schema_change: append_new_columns
-      +snowflake_warehouse: 'EDW_DEV_SMALL_WH'
+      +snowflake_warehouse: "{{ env_var('DBT_WAREHOUSE') }}"
       
       # Applies to all files under models as per folder specification wise
-      "LANDING-STAGING":
+      LANDING-STAGING:
         +materialized: table
         +schema: "{{ env_var('DBT_LND_SCHEMA') }}"
 
-      "STAGING-BRONZE":
+      STAGING-BRONZE:
         +materialized: table
         +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
 
-      "BRONZE-SILVER":
+      BRONZE-SILVER:
         +materialized: table
         +schema: "{{ env_var('DBT_SILVER_SCHEMA') }}"
 
-      "SILVER-GOLD":
+      SILVER-GOLD:
         +materialized: table
         +schema: "{{ env_var('DBT_GOLD_SCHEMA') }}"
