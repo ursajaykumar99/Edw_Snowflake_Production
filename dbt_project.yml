@@ -42,18 +42,14 @@ models:
       +snowflake_warehouse: "{{ env_var('DBT_WAREHOUSE') }}"
       
       # Applies to all files under models as per folder specification wise
-      LANDING-STAGING:
+      Staging_Tables:
         +materialized: table
         +schema: "{{ env_var('DBT_LND_SCHEMA') }}"
 
-      STAGING-BRONZE:
-        +materialized: table
-        +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
-
-      BRONZE-SILVER:
+      Silver_Tables:
         +materialized: table
         +schema: "{{ env_var('DBT_SILVER_SCHEMA') }}"
 
-      SILVER-GOLD:
+      Gold_Tables:
         +materialized: table
         +schema: "{{ env_var('DBT_GOLD_SCHEMA') }}"
