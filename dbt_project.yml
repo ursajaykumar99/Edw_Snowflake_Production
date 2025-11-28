@@ -46,6 +46,14 @@ models:
         +materialized: table
         +schema: "{{ env_var('DBT_LND_SCHEMA') }}"
 
+      Dup_Tables:
+        +materialized: table
+        +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
+
+      Rej_Tables:
+        +materialized: table
+        +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
+
       Silver_Tables:
         +materialized: table
         +schema: "{{ env_var('DBT_SILVER_SCHEMA') }}"
@@ -53,3 +61,12 @@ models:
       Gold_Tables:
         +materialized: table
         +schema: "{{ env_var('DBT_GOLD_SCHEMA') }}"
+
+snapshots:
+  Edw_Snowflake_Production:
+      +transient: false
+      +on_schema_change: fail
+      +snowflake_warehouse: "{{ env_var('DBT_WAREHOUSE') }}"
+
+      Bronze_Snapshots:
+        +schema: "{{ env_var('DBT_BRONZE_SCHEMA') }}"
